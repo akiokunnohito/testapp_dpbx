@@ -12,7 +12,7 @@ import dropbox
 
 
 # Dropboxからモデルファイルをダウンロードする関数
-@st.cache(suppress_st_warning=True, show_spinner=False)
+@st.cache_resource
 def download_model_from_dropbox(access_token, model_path, destination_file_name):
     dbx = dropbox.Dropbox(access_token)
     with open(destination_file_name, "wb") as f:
