@@ -12,6 +12,7 @@ import dropbox
 
 
 # Dropboxからモデルファイルをダウンロードする関数
+@st.cache(suppress_st_warning=True, show_spinner=False)
 def download_model_from_dropbox(access_token, model_path, destination_file_name):
     dbx = dropbox.Dropbox(access_token)
     with open(destination_file_name, "wb") as f:
@@ -19,6 +20,7 @@ def download_model_from_dropbox(access_token, model_path, destination_file_name)
         f.write(res.content)
     print("Model downloaded from Dropbox.")
     st.write("Model downloaded from Dropbox.") 
+
 
 # Dropboxから画像処理モデルをダウンロード
 access_token = st.secrets["dropbox"]["access_token"]
