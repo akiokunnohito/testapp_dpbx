@@ -18,6 +18,7 @@ def download_model_from_dropbox(access_token, model_path, destination_file_name)
         _, res = dbx.files_download(model_path)
         f.write(res.content)
     print("Model downloaded from Dropbox.")
+    st.write("Model downloaded from Dropbox.") 
 
 # Dropboxから画像処理モデルをダウンロード
 access_token = st.secrets["dropbox"]["access_token"]
@@ -77,9 +78,11 @@ if uploaded_file is not None:
     # マスク生成器のインスタンス化と実行
     mask_generator = SamAutomaticMaskGenerator(sam)
 
+    st.write("Image processing started.")
     start_time = time.time()  # 処理開始時刻
     masks = mask_generator.generate(image_np)
     processing_time = time.time() - start_time  # 処理時間を計算
+    st.write("Image processing finished.") 
 
     # 結果の表示
     fig, ax = plt.subplots(figsize=(7, 7))
